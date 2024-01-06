@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        body {
+            background-color: bisque;
+        }
+
+        h6 {
+            text-align: center;
+            color: indigo;
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th style="display: inline-block;">Action</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${people}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getAge()}"></td>
+        <td th:text="${user.getEmail()}"></td>
+        <td style="display: inline-block"><a th:href="@{/users/edit(id= ${user.getId()})}">EDIT</a></td>
+        <td style="display: inline-block">
+            <form method="post" th:action="@{/users(id = ${user.id})}">
+                <button type="submit" name="submit" value="value" class="link-button">DELETE</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h6><a th:href="@{/users/add}">Add new user</a></h6>
+</body>
+</html>
