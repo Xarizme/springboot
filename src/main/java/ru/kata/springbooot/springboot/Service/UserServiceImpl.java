@@ -10,6 +10,7 @@ import java.util.List;
 
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserDAO userDAO;
@@ -19,31 +20,26 @@ public class UserServiceImpl implements UserService {
         this.userDAO = userDAO;
     }
 
-    @Transactional
     @Override
     public void saveUser(String name, int age, String email) {
         userDAO.saveUser(name, age, email);
     }
 
-    @Transactional
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
-    @Transactional
     @Override
     public void removeById(Long id) {
         userDAO.removeById(id);
     }
 
-    @Transactional
     @Override
     public void updateUser(Long id, String name, int age, String email) {
         userDAO.updateUser(id, name, age, email);
     }
 
-    @Transactional
     @Override
     public User getUserById(Long id) {
         return userDAO.getUserById(id);
